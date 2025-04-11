@@ -20,16 +20,14 @@ export function App () {
   useEffect(() => {
     if (!fact) return
 
-    const firstThreeWord = fact.trim().split(' ', 3).join(' ')
+    const words = fact.trim().split(' ', 4).join(' ')
 
-    fetch(`https://cataas.com/cat/says/${firstThreeWord}?Size=50&fontColor=red&json=true`)
+    fetch(`https://cataas.com/cat/says/${words}?Size=50&fontColor=red&json=true`)
       .then( res => res.json())
       .then( response => {
-          const { _id } = response
-          const url = `cat/${_id}/says/${firstThreeWord}`
+          const { id } = response
+          const url = `cat/${id}/says/${words}`
           setImage(`https://cataas.com/${url}`)
-
-
         })
 
   }, [ fact ])
